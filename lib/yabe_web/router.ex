@@ -17,12 +17,6 @@ defmodule YabeWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", YabeWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", YabeWeb do
   #   pipe_through :api
@@ -88,4 +82,12 @@ defmodule YabeWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
   end
+
+    ## React catch-all
+
+    scope "/", YabeWeb do
+      pipe_through :browser
+
+      get "/*path", PageController, :index
+    end
 end
