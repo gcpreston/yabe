@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import AuthLoader from './AuthLoader';
+
 import Header from './Header';
 import Layout from './Layout';
 import Home from './pages/Home';
@@ -12,6 +14,8 @@ import SellerProfile from './pages/SellerProfile';
 export default function App() {
   return (
     <div className='App'>
+      <AuthLoader />
+
       <Header />
 
       <Routes>

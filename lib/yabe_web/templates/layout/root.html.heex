@@ -22,7 +22,15 @@
           <%= render "_user_menu.html", assigns %>
         </nav>
       </section>
+
+      <%= if @current_user do %>
+        <div hidden id="current-user">
+          <div id="current-user-id"><%= @current_user.id %></div>
+          <div id="current-user-email"><%= @current_user.email %></div>
+        </div>
+      <% end %>
     </header>
+
     <%= @inner_content %>
   </body>
 </html>
