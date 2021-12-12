@@ -18,9 +18,11 @@ defmodule YabeWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", YabeWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", YabeWeb do
+    pipe_through :api
+
+    resources "/items", ItemController
+  end
 
   # Enables LiveDashboard only for development
   #
