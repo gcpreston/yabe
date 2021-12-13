@@ -7,13 +7,10 @@ defmodule YabeWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    user = Yabe.Repo.preload(user, :roles)
-    [role | rest] = user.roles
-
     %{
       id: user.id,
       email: user.email,
-      role: role.name
+      role: user.role
     }
   end
 end

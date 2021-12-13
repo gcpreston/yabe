@@ -4,9 +4,10 @@ defmodule Yabe.Repo.Migrations.CreateItems do
   def change do
     create table(:items) do
       add :name, :string
-      add :description, :string
+      add :description, :text
       add :price, :integer
-      add :seller_id, references(:users, on_delete: :nothing)
+      add :image_url, :string, size: 512
+      add :seller_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end

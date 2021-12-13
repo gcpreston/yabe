@@ -7,9 +7,7 @@ defmodule Yabe.Accounts.User do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
-
-    has_many :user_roles, Yabe.Accounts.UserRole
-    has_many :roles, through: [:user_roles, :role]
+    field :role, :string
 
     timestamps()
   end
@@ -33,9 +31,10 @@ defmodule Yabe.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :role])
     |> validate_email()
     |> validate_password(opts)
+    |> validate_role()
   end
 
   defp validate_email(changeset) do
@@ -55,6 +54,11 @@ defmodule Yabe.Accounts.User do
     # |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
     # |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
     |> maybe_hash_password(opts)
+  end
+
+  defp validate_role(changeset) do
+    changeset
+    |> validate_required([:role])
   end
 
   defp maybe_hash_password(changeset, opts) do
