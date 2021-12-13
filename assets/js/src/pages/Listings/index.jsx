@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 import { selectAllItems } from '../../features/listings/listingsSlice';
 import { fetchAllItems } from '../../features/listings/listingsService';
+import ListingItem from "./ListingItem";
 
 export default function Listings() {
   const dispatch = useDispatch();
@@ -14,13 +15,9 @@ export default function Listings() {
   }, []);
 
   return (
-    <ul>
+    <ul className='list-group'>
       {items.map(item => (
-      <li key={item.id}>
-        <Link to={`/listings/${item.id}`}>
-          {item.name}: {item.price} cents
-        </Link>
-      </li>
+        <ListingItem {...item} />
       ))}
       <Outlet />
     </ul>

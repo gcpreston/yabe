@@ -15,7 +15,7 @@ export default function App() {
       <Header />
 
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path='/'>
           <Route index element={<Home />} />
 
           <Route path='listings'>
