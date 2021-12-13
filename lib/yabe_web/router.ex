@@ -21,7 +21,8 @@ defmodule YabeWeb.Router do
   scope "/api", YabeWeb do
     pipe_through :api
 
-    resources "/items", ItemController
+    resources "/items", ItemController, except: [:new, :edit]
+    resources "/sales", SaleController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

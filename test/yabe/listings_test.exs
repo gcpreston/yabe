@@ -60,4 +60,58 @@ defmodule Yabe.ListingsTest do
       assert %Ecto.Changeset{} = Listings.change_item(item)
     end
   end
+
+  describe "sales" do
+    alias Yabe.Listings.Sale
+
+    import Yabe.ListingsFixtures
+
+    @invalid_attrs %{quantity: nil}
+
+    test "list_sales/0 returns all sales" do
+      sale = sale_fixture()
+      assert Listings.list_sales() == [sale]
+    end
+
+    test "get_sale!/1 returns the sale with given id" do
+      sale = sale_fixture()
+      assert Listings.get_sale!(sale.id) == sale
+    end
+
+    test "create_sale/1 with valid data creates a sale" do
+      valid_attrs = %{quantity: 42}
+
+      assert {:ok, %Sale{} = sale} = Listings.create_sale(valid_attrs)
+      assert sale.quantity == 42
+    end
+
+    test "create_sale/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Listings.create_sale(@invalid_attrs)
+    end
+
+    test "update_sale/2 with valid data updates the sale" do
+      sale = sale_fixture()
+      update_attrs = %{quantity: 43}
+
+      assert {:ok, %Sale{} = sale} = Listings.update_sale(sale, update_attrs)
+      assert sale.quantity == 43
+    end
+
+    test "update_sale/2 with invalid data returns error changeset" do
+      sale = sale_fixture()
+      assert {:error, %Ecto.Changeset{}} = Listings.update_sale(sale, @invalid_attrs)
+      assert sale == Listings.get_sale!(sale.id)
+    end
+
+    test "delete_sale/1 deletes the sale" do
+      sale = sale_fixture()
+      assert {:ok, %Sale{}} = Listings.delete_sale(sale)
+      assert_raise Ecto.NoResultsError, fn -> Listings.get_sale!(sale.id) end
+    end
+
+    test "change_sale/1 returns a sale changeset" do
+      sale = sale_fixture()
+      assert %Ecto.Changeset{} = Listings.change_sale(sale)
+    end
+  end
 end

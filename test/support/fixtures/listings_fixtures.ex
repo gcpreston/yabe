@@ -19,4 +19,18 @@ defmodule Yabe.ListingsFixtures do
 
     item
   end
+
+  @doc """
+  Generate a sale.
+  """
+  def sale_fixture(attrs \\ %{}) do
+    {:ok, sale} =
+      attrs
+      |> Enum.into(%{
+        quantity: 42
+      })
+      |> Yabe.Listings.create_sale()
+
+    sale
+  end
 end
