@@ -24,7 +24,7 @@ export default function Listing() {
       <>
         <h3>{item.name}</h3>
         <p>{item.description}</p>
-        <p>Seller ID: {item.seller_id}</p>
+        <p>Seller: {item.seller.email}</p>
         <p>Buy it now: {item.price} cents</p>
 
         <img
