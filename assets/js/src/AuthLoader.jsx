@@ -12,11 +12,11 @@ const LoggedOutItems = () => {
   )
 }
 
-const LoggedInItems = (user) => {
+const LoggedInItems = (props) => {
   return (
     <div>
-      <span className=''>Logged in as: {user.name}</span>
-      <a className='btn btn-primary m-2' href='/users/log_in'>Log Out</a>
+      <span className=''>Logged in as: {props.user.email}</span>
+      <a className='btn btn-primary m-2' href='/users/log_out'>Log Out</a>
     </div>
   )
 }

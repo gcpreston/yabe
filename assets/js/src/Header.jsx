@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <div className='row'>
       <div className='col-2'>
-        <h1>Yabe</h1>
+        <a href='/' className='text-decoration-none'>
+          <h1>Yabe</h1>
+        </a>
         <p>Buy or sell goods!</p>
       </div>
       <SearchBar />
