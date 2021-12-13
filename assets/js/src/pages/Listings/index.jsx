@@ -17,7 +17,7 @@ export default function Listings() {
   return (
     <ul className='list-group'>
       {items.map(item => (
-        <ListingItem {...item} />
+        <ListingItem key={item.id} {...item} />
       ))}
       <Outlet />
     </ul>
