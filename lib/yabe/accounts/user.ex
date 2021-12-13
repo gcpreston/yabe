@@ -8,6 +8,9 @@ defmodule Yabe.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
 
+    has_many :user_roles, Yabe.Accounts.UserRole
+    has_many :roles, through: [:user_roles, :role]
+
     timestamps()
   end
 

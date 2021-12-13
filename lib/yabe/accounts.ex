@@ -6,7 +6,7 @@ defmodule Yabe.Accounts do
   import Ecto.Query, warn: false
   alias Yabe.Repo
 
-  alias Yabe.Accounts.{User, UserToken, UserNotifier}
+  alias Yabe.Accounts.{User, UserToken, UserNotifier, UserRole}
 
   ## Database getters
 
@@ -210,6 +210,14 @@ defmodule Yabe.Accounts do
       {:ok, %{user: user}} -> {:ok, user}
       {:error, :user, changeset, _} -> {:error, changeset}
     end
+  end
+
+  @doc """
+  Add a role to a user.
+  """
+  def add_user_role(user, role) do
+    %UserRole{user_id: user.id, role_id: role.id}
+    |> Repo.insert()
   end
 
   ## Session

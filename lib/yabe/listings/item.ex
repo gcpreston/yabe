@@ -6,8 +6,10 @@ defmodule Yabe.Listings.Item do
     field :description, :string
     field :name, :string
     field :price, :integer
-    field :seller_id, :id
     field :image_url, :string
+
+    # NOTE: No validation if user is a seller
+    belongs_to :seller, Yabe.Accounts.User
 
     timestamps()
   end
