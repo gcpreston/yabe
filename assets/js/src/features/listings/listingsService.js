@@ -18,3 +18,8 @@ export const fetchSalesOfUser = (dispatch, userId) =>
   fetch(`${SALES_API}/sold_by/${userId}`)
     .then(response => response.json())
     .then(parsedResp => dispatch(setSales(parsedResp.data)));
+
+export const fetchPurchasesOfUser = (dispatch, userId) =>
+  fetch(`${SALES_API}/bought_by/${userId}`)
+    .then(response => response.json())
+    .then(parsedResp => dispatch(setSales(parsedResp.data)));
