@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { selectItemIds, selectItem } from '../../features/listings/listingsSlice';
 import { fetchItem } from '../../features/listings/listingsService';
-import { selectIsAuthenticated, selectUser } from '../../features/auth/authSlice';
+import { selectIsAuthenticated, selectCurrentUser } from '../../features/auth/authSlice';
 import { dollarString } from '../../utils';
 
 export default function Listing() {
@@ -14,7 +14,7 @@ export default function Listing() {
   const dispatch = useDispatch();
 
   const isAuthenticated = useSelector(selectIsAuthenticated);
-  const user = useSelector(selectUser);
+  const user = useSelector(selectCurrentUser);
   const itemIds = useSelector(selectItemIds);
   const item = useSelector(state => selectItem(state, id));
 

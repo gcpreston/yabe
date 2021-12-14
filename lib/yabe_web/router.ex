@@ -23,6 +23,7 @@ defmodule YabeWeb.Router do
 
     resources "/items", ItemController, except: [:new, :edit]
     resources "/sales", SaleController, except: [:new, :edit]
+    resources "/users", UserController, only: [:show]
   end
 
   # Enables LiveDashboard only for development

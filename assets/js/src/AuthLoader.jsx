@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setUser, selectUser, selectIsAuthenticated } from './features/auth/authSlice';
+import { setCurrentUser, selectCurrentUser, selectIsAuthenticated } from './features/auth/authSlice';
 
 const LoggedOutItems = () => {
   return (
@@ -23,7 +23,7 @@ const LoggedInItems = (props) => {
 
 const AuthLoader = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  const user = useSelector(selectCurrentUser);
   const loggedIn = useSelector(selectIsAuthenticated);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const AuthLoader = () => {
         email: currentUserEmail.textContent,
         role: currentUserRole.textContent
       };
-      dispatch(setUser(currentUser));
+      dispatch(setCurrentUser(currentUser));
     }
   }, []);
 

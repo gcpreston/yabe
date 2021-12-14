@@ -24,7 +24,7 @@ export default function App() {
           </Route>
 
           <Route path='sellers/'>
-            <Route path=':username' element={<SellerProfile />} />
+            <Route path=':userId' element={<SellerProfile />} />
           </Route>
 
           <Route path="*" element={<NoMatch />} />
