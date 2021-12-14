@@ -11,9 +11,12 @@ defmodule YabeWeb.SaleView do
   end
 
   def render("sale.json", %{sale: sale}) do
+    sale = Yabe.Repo.preload(sale, [:item, :buyer])
     %{
       id: sale.id,
-      quantity: sale.quantity
+      quantity: sale.quantity,
+      item: render_one(sale.item, YabeWeb.ItemView, "item.json"),
+      buyer: render_one(sale.buyer, YabeWeb.UserView, "user.json")
     }
   end
 end

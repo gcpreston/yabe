@@ -1,6 +1,7 @@
 defmodule YabeWeb.SaleController do
   use YabeWeb, :controller
 
+  alias Yabe.Accounts
   alias Yabe.Listings
   alias Yabe.Listings.Sale
 
@@ -21,8 +22,21 @@ defmodule YabeWeb.SaleController do
   end
 
   def show(conn, %{"id" => id}) do
-    sale = Listings.get_sale!(id)
-    render(conn, "show.json", sale: sale)
+    with {:ok, sale} <- Listings.get_sale(id) do
+      render(conn, "show.json", sale: sale)
+    end
+  end
+
+  def show_by_seller(conn, %{"seller_id" => seller_id}) do
+    user = Accounts.get_user!(seller_id)
+    sales = Listings.list_sales_of_user(user)
+    render(conn, "index.json", sales: sales)
+  end
+
+  def show_by_buyer(conn, %{"buyer_id" => buyer_id}) do
+    user = Accounts.get_user!(buyer_id)
+    sales = Listings.list_purchases_of_user(user)
+    render(conn, "index.json", sales: sales)
   end
 
   def update(conn, %{"id" => id, "sale" => sale_params}) do
