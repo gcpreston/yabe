@@ -7,6 +7,7 @@ defmodule Yabe.Listings do
   alias Yabe.Repo
 
   alias Yabe.Listings.Item
+  alias Yabe.Accounts.User
 
   @doc """
   Returns the list of items.
@@ -126,6 +127,29 @@ defmodule Yabe.Listings do
   end
 
   @doc """
+  Return the sales where the user is the buyer.
+  """
+  def list_purchases_of_user(%User{} = user) do
+    query =
+      from s in Sale,
+        where: s.buyer_id == ^user.id
+
+    Repo.all(query)
+  end
+
+  @doc """
+  Return the sales where the user is the seller.
+  """
+  def list_sales_of_user(%User{} = user) do
+    query =
+      from s in Sale,
+        join: i in assoc(s, :item),
+        where: i.seller_id == ^user.id
+
+    Repo.all(query)
+  end
+
+  @doc """
   Gets a single sale.
 
   Raises `Ecto.NoResultsError` if the Sale does not exist.
@@ -140,6 +164,25 @@ defmodule Yabe.Listings do
 
   """
   def get_sale!(id), do: Repo.get!(Sale, id)
+
+  @doc """
+  Gets a single sale without raising.
+
+  ## Examples
+
+      iex> get_sale(123)
+      {:ok, %Sale{}}
+
+      iex> get_sale(456)
+      {:error, :not_found}
+  """
+  def get_sale(id) do
+    if sale = Repo.get(Sale, id) do
+      {:ok, sale}
+    else
+      {:error, :not_found}
+    end
+  end
 
   @doc """
   Creates a sale.
