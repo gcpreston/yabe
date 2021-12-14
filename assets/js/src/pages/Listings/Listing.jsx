@@ -26,19 +26,22 @@ export default function Listing() {
 
   if (item) {
     return (
-      <>
-        <h3>{item.name}</h3>
-        <p>{item.description}</p>
-        <p>Seller: {item.seller.email}</p>
-        <p>Price: {dollarString(item.price)}</p>
-
-        {isAuthenticated && user.role === 'buyer' ? <button className='btn btn-primary'>Buy</button> : null}
-
-        <img
-          src={item.image_url}
-          alt={`item-${item.id}`}
-        />
-      </>
+      <div className='row'>
+        <div className='col-4'>
+          <img
+            src={item.image_url}
+            alt={`item-${item.id}`}
+            className='img-fluid border border-2 border-primary rounded'
+          />
+        </div>
+        <div className='col-8 border rounded p-4'>
+          <h1>{item.name}</h1>
+          <h3>Seller: {item.seller.email}</h3>
+          <p>{item.description}</p>
+          <h3>Price: {dollarString(item.price)}</h3>
+          {isAuthenticated && user.role === 'buyer' ? <button className='btn btn-primary'>Buy</button> : <p>Log in to buy</p>}
+        </div>
+      </div>
     );
   } else {
     return null;

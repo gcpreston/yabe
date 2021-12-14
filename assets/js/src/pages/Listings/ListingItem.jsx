@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const ListingItem = item =>
   <li key={item.id} className='list-group-item'>
-    <div className='row'>
+    <div className='row my-2'>
       <div className='col-2'>
         <img src={item.image_url} alt={item.id} className='img-fluid img-thumbnail'/>
       </div>
@@ -14,7 +14,7 @@ const ListingItem = item =>
           </h2>
         </Link>
         <p>
-          Sold by: {item.seller.email}
+          Seller: {item.seller.email}
         </p>
         <p>
           {item.description}
