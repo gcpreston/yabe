@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { selectItemIds, selectItem } from '../../features/listings/listingsSlice';
 import { fetchItem } from '../../features/listings/listingsService';
 import { selectIsAuthenticated, selectUser } from '../../features/auth/authSlice';
+import { dollarString } from '../../utils';
 
 export default function Listing() {
   const params = useParams();
@@ -29,6 +30,8 @@ export default function Listing() {
         <h3>{item.name}</h3>
         <p>{item.description}</p>
         <p>Seller: {item.seller.email}</p>
+        <p>Price: {dollarString(item.price)}</p>
+
         {isAuthenticated && user.role === 'buyer' ? <button className='btn btn-primary'>Buy</button> : null}
 
         <img
