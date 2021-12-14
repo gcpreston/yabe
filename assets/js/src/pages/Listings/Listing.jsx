@@ -39,8 +39,7 @@ export default function Listing() {
           <h3>Seller: {item.seller.email}</h3>
           <p>{item.description}</p>
           <h3>Price: {dollarString(item.price)}</h3>
-
-            {isAuthenticated && user.role === 'buyer' ? <button className='btn btn-primary'>Buy</button> : null}
+          {isAuthenticated && user.role === 'buyer' ? <button className='btn btn-primary'>Buy</button> : <p>Log in to buy</p>}
         </div>
       </div>
     );
