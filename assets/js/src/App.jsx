@@ -3,11 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Home from './pages/Home';
-import Listings from './pages/Listings';
+import AllListings from './pages/Listings/AllListings';
 import Listing from './pages/Listings/Listing'
 import NoMatch from './pages/NoMatch';
-import SellerProfile from './pages/SellerProfile';
-import BuyerProfile from './pages/BuyerProfile';
+import SellerProfile from './pages/Seller/SellerProfile';
+import BuyerProfile from './pages/Buyer/BuyerProfile';
 import AuthLoader from "./AuthLoader";
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
           <Route index element={<Home />} />
 
           <Route path='listings'>
-            <Route index element={<Listings />} />
+            <Route index element={<AllListings />} />
             <Route path=':id' element={<Listing />} />
           </Route>
 

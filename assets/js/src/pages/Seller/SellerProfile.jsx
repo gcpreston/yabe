@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { fetchUser } from '../features/accounts/accountsService.js';
-import { selectUser } from '../features/accounts/accountsSlice.js';
-import { fetchSalesOfUser } from '../features/listings/listingsService.js';
-import { selectSales } from '../features/listings/listingsSlice.js';
-import { dollarString } from '../utils.js';
+import { fetchUser } from '../../features/accounts/accountsService.js';
+import { selectUser } from '../../features/accounts/accountsSlice.js';
+import { fetchSalesOfUser } from '../../features/listings/listingsService.js';
+import { selectSales } from '../../features/listings/listingsSlice.js';
+import Sales from "./Sales";
 
 export default function SellerProfile() {
   const { userId } = useParams();
@@ -27,10 +27,7 @@ export default function SellerProfile() {
           <p>Profile for {user.email}</p>
           <p>{user.role}</p>
 
-          <p>Sales:</p>
-          <ul>
-            {sales.map(sale => <li key={sale.id}>{sale.item.name}: {dollarString(sale.item.price)} to {sale.buyer.email} ({sale.quantity} count)</li>)}
-          </ul>
+          <Sales userId={user.id} />
         </>
       );
     } else {
