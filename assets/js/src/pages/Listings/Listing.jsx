@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { selectItemIds, selectItem } from '../../features/listings/listingsSlice';
 import { fetchItem } from '../../features/listings/listingsService';
-import { selectIsAuthenticated, selectCurrentUser } from '../../features/auth/authSlice';
+import BuyButton from '../../BuyButton';
 import { dollarString } from '../../utils';
 
 export default function Listing() {
@@ -12,9 +12,6 @@ export default function Listing() {
   const id = parseInt(params.id);
 
   const dispatch = useDispatch();
-
-  const isAuthenticated = useSelector(selectIsAuthenticated);
-  const user = useSelector(selectCurrentUser);
   const itemIds = useSelector(selectItemIds);
   const item = useSelector(state => selectItem(state, id));
 
@@ -39,7 +36,7 @@ export default function Listing() {
           <h3>Seller: {item.seller.email}</h3>
           <p>{item.description}</p>
           <h3>Price: {dollarString(item.price)}</h3>
-          {isAuthenticated && user.role === 'buyer' ? <button className='btn btn-primary'>Buy</button> : <p>Log in to buy</p>}
+          <BuyButton itemId={id} />
         </div>
       </div>
     );
