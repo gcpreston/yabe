@@ -8,10 +8,12 @@ import Listings from './pages/Listings';
 import Listing from './pages/Listings/Listing'
 import NoMatch from './pages/NoMatch';
 import SellerProfile from './pages/SellerProfile';
+import AuthLoader from "./AuthLoader";
 
 export default function App() {
   return (
     <div className='App'>
+      <AuthLoader />
       <Header />
 
       <Routes>

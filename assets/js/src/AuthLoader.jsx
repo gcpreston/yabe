@@ -3,24 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setCurrentUser, selectCurrentUser, selectIsAuthenticated } from './features/auth/authSlice';
 
-const LoggedOutItems = () => {
-  return (
-    <div>
-      <a className='btn btn-primary m-2' href='/users/register'>Register</a>
-      <a className='btn btn-primary m-2' href='/users/log_in'>Log In</a>
-    </div>
-  )
-}
-
-const LoggedInItems = (props) => {
-  return (
-    <div>
-      <span className=''>Logged in as: {props.user.email}</span>
-      <a className='btn btn-primary m-2' href='/users/log_out'>Log Out</a>
-    </div>
-  )
-}
-
 const AuthLoader = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
@@ -41,11 +23,7 @@ const AuthLoader = () => {
     }
   }, []);
 
-  return (
-    <div className='col-4'>
-      {loggedIn ? <LoggedInItems user={user}/> : <LoggedOutItems />}
-    </div>
-  )
+  return null;
 }
 
 export default AuthLoader;
