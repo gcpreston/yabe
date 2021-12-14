@@ -11,7 +11,7 @@ import SellerProfile from './pages/SellerProfile';
 
 export default function App() {
   return (
-    <div className='App container'>
+    <div className='App'>
       <Header />
 
       <Routes>
