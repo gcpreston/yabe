@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './Header';
-import Layout from './Layout';
 import Home from './pages/Home';
 import Listings from './pages/Listings';
 import Listing from './pages/Listings/Listing'
