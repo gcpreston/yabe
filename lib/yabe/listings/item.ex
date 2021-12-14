@@ -17,7 +17,7 @@ defmodule Yabe.Listings.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:name, :description, :price])
-    |> validate_required([:name, :description, :price])
+    |> cast(attrs, [:name, :description, :price, :image_url, :seller_id])
+    |> validate_required([:name, :description, :price, :image_url, :seller_id])
   end
 end

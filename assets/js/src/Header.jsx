@@ -14,11 +14,11 @@ const Header = () => {
           <p>Buy or sell goods!</p>
         </div>
         <SearchBar />
-        <AuthLoader />
       </div>
       <div className='row'>
         <NavBar />
       </div>
+      <hr/>
     </>
   )
 }

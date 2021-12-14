@@ -22,7 +22,7 @@ if false do
   {:ok, user1} = Accounts.register_user(%{email: "testuser1@example.com", password: "password1234", role: "buyer"})
   {:ok, user2} = Accounts.register_user(%{email: "testuser2@example.com", password: "password1234", role: "seller"})
 
-  Repo.delete_all(Item)
+  Repo.delete_all(Listings.Item)
   {:ok, _item} = Listings.create_item(%{
     name: "iphone 22",
     description: "some cool thing",
