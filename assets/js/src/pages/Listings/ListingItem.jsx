@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {dollarString} from "../../utils";
 
 const ListingItem = item =>
   <li key={item.id} className='list-group-item'>
@@ -20,7 +21,7 @@ const ListingItem = item =>
           {item.description}
         </p>
         <h2>
-          ${item.price}
+          {dollarString(item.price)}
         </h2>
       </div>
     </div>
