@@ -9,7 +9,7 @@ const ListingItem = item =>
         <img src={item.image_url} alt={item.id} className='img-fluid img-thumbnail'/>
       </div>
       <div className='col-12 col-sm-9 col-xl-10'>
-        <Link to={`/listings/${item.id}`}>
+        <Link to={`/${item.link}/${item.id}`}>
           <h2>
             {item.name}
           </h2>
