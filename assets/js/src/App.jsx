@@ -8,8 +8,10 @@ import Listing from './pages/Listings/Listing'
 import NoMatch from './pages/NoMatch';
 import SellerProfile from './pages/Seller/SellerProfile';
 import BuyerProfile from './pages/Buyer/BuyerProfile';
+import Profile from './Profile';
 import AuthLoader from "./AuthLoader";
 import Search from "./pages/Search";
+import CurrentUserProfile from './pages/CurrentUserProfile';
 
 export default function App() {
   return (
@@ -27,12 +29,14 @@ export default function App() {
           </Route>
 
           <Route path='sellers/'>
-            <Route path=':userId' element={<SellerProfile />} />
+            <Route path=':userId' element={<Profile type='seller' />} />
           </Route>
 
           <Route path='buyers/'>
-            <Route path=':userId' element={<BuyerProfile />} />
+            <Route path=':userId' element={<Profile type='buyer' />} />
           </Route>
+
+          <Route path='profile' element={<CurrentUserProfile />} />
 
           <Route path='search/'>
             <Route path=':query' element={<Search />} />

@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { fetchUser } from '../../features/accounts/accountsService.js';
 import { selectUser } from '../../features/accounts/accountsSlice.js';
 import { fetchPurchasesOfUser } from '../../features/listings/listingsService.js';
-import Purchases from "./Purchases";
+import Purchases from './Purchases';
 
-export default function BuyerProfile() {
-  const { userId } = useParams();
+export default function BuyerProfile(props) {
+  const { userId } = props;
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
