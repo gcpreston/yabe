@@ -10,6 +10,7 @@ import SellerProfile from './pages/Seller/SellerProfile';
 import BuyerProfile from './pages/Buyer/BuyerProfile';
 import AuthLoader from "./AuthLoader";
 import Search from "./pages/Search";
+import Details from "./pages/Search/Details";
 
 export default function App() {
   return (
@@ -36,6 +37,10 @@ export default function App() {
 
           <Route path='search/'>
             <Route path=':query' element={<Search />} />
+          </Route>
+
+          <Route path='details/'>
+            <Route path=':id' element={<Details />} />
           </Route>
 
           <Route path="*" element={<NoMatch />} />

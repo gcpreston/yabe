@@ -16,7 +16,7 @@ const Search = () => {
   }, [query]);
 
   return (
-    <Listings items={items} />
+    <Listings items={items} link="details"/>
   )
 }
 

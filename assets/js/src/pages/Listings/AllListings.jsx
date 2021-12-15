@@ -14,6 +14,6 @@ export default function AllListings() {
   }, []);
 
   return (
-    <Listings items={items} />
+    <Listings items={items} link='listings'/>
   )
 }
