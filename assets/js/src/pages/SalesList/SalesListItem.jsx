@@ -1,6 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
+<<<<<<< HEAD
 import { dollarString, dollarAmount } from "../../utils";
+=======
+import {dollarString} from "../../utils";
+>>>>>>> a33d78350a1efce13de63f9bb2e7c23decabd285
 
 const SalesListItem = sale => {
   return (
@@ -28,7 +32,7 @@ const SalesListItem = sale => {
             Qty sold: {sale.quantity}
           </p>
           <h2>
-            Sold for: ${dollarAmount(sale.item.price) * sale.quantity}
+            Sold for: {dollarString(sale.item.price * sale.quantity)}
           </h2>
           <p>
             {dollarString(sale.item.price)}/unit

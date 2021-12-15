@@ -2,7 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
   searchResult: {
-    products: []
+    products: [],
+    items: []
   }
 };
 
@@ -11,7 +12,24 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     setSearchItems: (state, action) => {
-      state.searchResult = action.payload;
+      const searchResult = action.payload;
+
+      console.log(searchResult.products);
+      const items = searchResult.products.map(p => {
+        const price = p.salePrice * 100;
+
+        return {
+          id: p.sku,
+          name: p.name,
+          image_url: p.image,
+          description: p.shortDescription,
+          price: price,
+          seller: {email: 'Best Buy'}
+        }
+      });
+
+      state.searchResult = searchResult;
+      state.searchResult.items = items;
     }
   }
 });
@@ -19,7 +37,7 @@ export const searchSlice = createSlice({
 export const { setSearchItems } = searchSlice.actions;
 
 export const selectSearchItems = (state) => {
-  return state.search.searchResult;
+  return state.search.searchResult.items;
 }
 
 export default searchSlice.reducer;
