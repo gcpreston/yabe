@@ -18,8 +18,6 @@ const NavBar = () => {
         <ul className='nav nav-pills'>
           <NavItem active={location.pathname === '/'} path={'/'} name={'Home'}/>
           <NavItem active={location.pathname.startsWith('/listings')} path={'/listings'} name={'Listings'}/>
-          <NavItem active={location.pathname.startsWith('/sellers')} path={'/sellers'} name={'Sellers'}/>
-          <NavItem active={location.pathname.startsWith('/buyers')} path={'/buyers'} name={'Buyers'}/>
           {isAuthenticated ? <NavItem active={location.pathname.startsWith('/profile')} path={'/profile'} name={'My Profile'}/> : null}
         </ul>
       </div>
