@@ -1,9 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { dollarString, dollarAmount } from "../../utils";
 
 const SalesListItem = sale => {
-  console.log(sale);
-
   return (
     <li key={sale.item.id} className='list-group-item'>
       <div className='row my-2'>
@@ -29,10 +28,10 @@ const SalesListItem = sale => {
             Qty sold: {sale.quantity}
           </p>
           <h2>
-            Sold for: ${sale.item.price * sale.quantity}
+            Sold for: ${dollarAmount(sale.item.price) * sale.quantity}
           </h2>
           <p>
-            ${sale.item.price}/unit
+            {dollarString(sale.item.price)}/unit
           </p>
         </div>
       </div>

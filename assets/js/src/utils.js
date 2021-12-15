@@ -1,4 +1,8 @@
+export function dollarAmount(cents) {
+  return cents / 100;
+}
+
 export function dollarString(cents) {
-  const amount = (cents / 100).toFixed(2);
-  return `$${amount}`;
+  const amount = dollarAmount(cents);
+  return `$${amount.toFixed(2)}`;
 }
