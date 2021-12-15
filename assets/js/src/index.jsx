@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import SnackbarProvider from 'react-simple-snackbar'
 
 import '../../css/bootstrap.min.css';
 import App from './App';
@@ -15,7 +16,9 @@ if (root) {
     <React.StrictMode>
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <SnackbarProvider>
+            <App />
+          </SnackbarProvider>
         </BrowserRouter>
       </Provider>
     </React.StrictMode>,
