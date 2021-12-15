@@ -13,7 +13,6 @@ export default function AllListings() {
     fetchAllItems(dispatch);
   }, []);
 
-  console.log('items', items);
   return (
     <Listings items={items} />
   )
