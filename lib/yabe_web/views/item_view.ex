@@ -20,7 +20,8 @@ defmodule YabeWeb.ItemView do
       description: item.description,
       price: item.price,
       image_url: item.image_url,
-      seller: render_one(item.seller, UserView, "user.json")
+      seller: render_one(item.seller, UserView, "user.json"),
+      quantity_sold: Yabe.Listings.get_quantity_sold(item)
     }
   end
 end

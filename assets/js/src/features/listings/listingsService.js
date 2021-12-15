@@ -23,3 +23,14 @@ export const fetchPurchasesOfUser = (dispatch, userId) =>
   fetch(`${SALES_API}/bought_by/${userId}`)
     .then(response => response.json())
     .then(parsedResp => dispatch(setSales(parsedResp.data)));
+
+export const createSale = (disaptch, newSale) =>
+  fetch(SALES_API, {
+    method: 'POST',
+    body: JSON.stringify(newSale),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .then(parsedResp => disaptch(setItem(parsedResp.data.item)));

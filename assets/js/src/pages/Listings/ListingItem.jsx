@@ -22,6 +22,7 @@ const ListingItem = item =>
         <h2>
           ${item.price}
         </h2>
+        <p>Quantity sold: {item.quantity_sold}</p>
       </div>
     </div>
   </li>

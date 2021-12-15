@@ -36,6 +36,7 @@ export default function Listing() {
           <h3>Seller: {item.seller.email}</h3>
           <p>{item.description}</p>
           <h3>Price: {dollarString(item.price)}</h3>
+          <p>Quantity sold: {item.quantity_sold}</p>
           <BuyButton itemId={id} />
         </div>
       </div>

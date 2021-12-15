@@ -185,6 +185,26 @@ defmodule Yabe.Listings do
   end
 
   @doc """
+  Get the total of quantities of sales for an item.
+
+  ## Examples
+
+      iex> get_quantity_sold(some_item_with_sales)
+      5
+
+      iex> get_quantity_sold(some_item_without_sales)
+      0
+  """
+  def get_quantity_sold(%Item{} = item) do
+    query =
+      from s in Sale,
+        where: s.item_id == ^item.id,
+        select: sum(s.quantity)
+
+    Repo.one(query) || 0
+  end
+
+  @doc """
   Creates a sale.
 
   ## Examples

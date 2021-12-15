@@ -14,6 +14,8 @@ defmodule Yabe.Listings.Sale do
   def changeset(sale, attrs) do
     sale
     |> cast(attrs, [:quantity, :item_id, :buyer_id])
+    |> cast_assoc(:item)
+    |> cast_assoc(:buyer)
     |> validate_required([:quantity, :item_id, :buyer_id])
   end
 end
