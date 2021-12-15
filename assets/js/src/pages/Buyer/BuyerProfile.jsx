@@ -24,7 +24,11 @@ export default function BuyerProfile() {
           <h3>Buyer Profile</h3>
           <p>Profile for {user.email}</p>
 
-          <Purchases userId={userId} />
+          {user.id === userId ?
+            <Purchases userId={userId} />
+            :
+            null
+          }
         </>
       );
     } else {

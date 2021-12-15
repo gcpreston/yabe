@@ -5,14 +5,12 @@ import { useParams } from 'react-router-dom';
 import { fetchUser } from '../../features/accounts/accountsService.js';
 import { selectUser } from '../../features/accounts/accountsSlice.js';
 import { fetchSalesOfUser } from '../../features/listings/listingsService.js';
-import { selectSales } from '../../features/listings/listingsSlice.js';
 import Sales from "./Sales";
 
 export default function SellerProfile() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const sales = useSelector(selectSales);
 
   useEffect(() => {
     fetchUser(dispatch, userId);
@@ -25,9 +23,12 @@ export default function SellerProfile() {
         <>
           <h3>Seller Profile</h3>
           <p>Profile for {user.email}</p>
-          <p>{user.role}</p>
 
-          <Sales userId={user.id} />
+          {user.id === userId ?
+            <Sales userId={user.id} />
+            :
+            null
+          }
         </>
       );
     } else {
