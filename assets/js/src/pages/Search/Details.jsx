@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import BuyButton from '../../BuyButton';
+import OutsideBuyButton from '../../OutsideBuyButton';
 import { dollarString } from '../../utils';
-import {selectSearchItemDetails} from "../../features/search/searchSlice";
-import {fetchSearchItemDetails} from "../../features/search/searchService";
+import { selectSearchItemDetails } from "../../features/search/searchSlice";
+import { fetchSearchItemDetails, fetchSearchItemQuantitySold } from "../../features/search/searchService";
 
 export default function Details() {
   const params = useParams();
@@ -15,11 +15,11 @@ export default function Details() {
   const item = useSelector(selectSearchItemDetails);
 
   useEffect(() => {
-    fetchSearchItemDetails(dispatch, id);
+    fetchSearchItemDetails(dispatch, id)
+      .then(() => fetchSearchItemQuantitySold(dispatch, id));
   }, []);
 
   if (item) {
-    console.log(item);
     return (
       <div className='row'>
         <div className='col-4'>
@@ -35,7 +35,7 @@ export default function Details() {
           <p>{item.description}</p>
           <h3>Price: {dollarString(item.price)}</h3>
           <p>Quantity sold: {item.quantity_sold}</p>
-          <BuyButton itemId={id} />
+          <OutsideBuyButton itemId={id} />
         </div>
       </div>
     );

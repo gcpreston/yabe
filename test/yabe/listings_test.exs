@@ -114,4 +114,56 @@ defmodule Yabe.ListingsTest do
       assert %Ecto.Changeset{} = Listings.change_sale(sale)
     end
   end
+
+  describe "outside_sales" do
+    alias Yabe.Listings.OutsideSale
+
+    import Yabe.ListingsFixtures
+
+    @invalid_attrs %{}
+
+    test "list_outside_sales/0 returns all outside_sales" do
+      outside_sale = outside_sale_fixture()
+      assert Listings.list_outside_sales() == [outside_sale]
+    end
+
+    test "get_outside_sale!/1 returns the outside_sale with given id" do
+      outside_sale = outside_sale_fixture()
+      assert Listings.get_outside_sale!(outside_sale.id) == outside_sale
+    end
+
+    test "create_outside_sale/1 with valid data creates a outside_sale" do
+      valid_attrs = %{}
+
+      assert {:ok, %OutsideSale{} = outside_sale} = Listings.create_outside_sale(valid_attrs)
+    end
+
+    test "create_outside_sale/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Listings.create_outside_sale(@invalid_attrs)
+    end
+
+    test "update_outside_sale/2 with valid data updates the outside_sale" do
+      outside_sale = outside_sale_fixture()
+      update_attrs = %{}
+
+      assert {:ok, %OutsideSale{} = outside_sale} = Listings.update_outside_sale(outside_sale, update_attrs)
+    end
+
+    test "update_outside_sale/2 with invalid data returns error changeset" do
+      outside_sale = outside_sale_fixture()
+      assert {:error, %Ecto.Changeset{}} = Listings.update_outside_sale(outside_sale, @invalid_attrs)
+      assert outside_sale == Listings.get_outside_sale!(outside_sale.id)
+    end
+
+    test "delete_outside_sale/1 deletes the outside_sale" do
+      outside_sale = outside_sale_fixture()
+      assert {:ok, %OutsideSale{}} = Listings.delete_outside_sale(outside_sale)
+      assert_raise Ecto.NoResultsError, fn -> Listings.get_outside_sale!(outside_sale.id) end
+    end
+
+    test "change_outside_sale/1 returns a outside_sale changeset" do
+      outside_sale = outside_sale_fixture()
+      assert %Ecto.Changeset{} = Listings.change_outside_sale(outside_sale)
+    end
+  end
 end

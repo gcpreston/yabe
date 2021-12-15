@@ -23,10 +23,12 @@ defmodule YabeWeb.Router do
 
     resources "/items", ItemController, except: [:new, :edit]
     resources "/sales", SaleController, except: [:new, :edit]
+    resources "/outside_sales", OutsideSaleController, except: [:new, :edit]
     resources "/users", UserController, only: [:show]
 
     get "/sales/sold_by/:seller_id", SaleController, :show_by_seller
     get "/sales/bought_by/:buyer_id", SaleController, :show_by_buyer
+    get "/outside_sales/quantity_sold/:item_id", OutsideSaleController, :show_quantity_sold
   end
 
   # Enables LiveDashboard only for development

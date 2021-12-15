@@ -6,7 +6,7 @@ defmodule Yabe.Listings do
   import Ecto.Query, warn: false
   alias Yabe.Repo
 
-  alias Yabe.Listings.Item
+  alias Yabe.Listings.{Item, Sale, OutsideSale}
   alias Yabe.Accounts.User
 
   @doc """
@@ -102,8 +102,6 @@ defmodule Yabe.Listings do
   def change_item(%Item{} = item, attrs \\ %{}) do
     Item.changeset(item, attrs)
   end
-
-  alias Yabe.Listings.Sale
 
   @doc """
   Returns the list of sales.
@@ -267,5 +265,120 @@ defmodule Yabe.Listings do
   """
   def change_sale(%Sale{} = sale, attrs \\ %{}) do
     Sale.changeset(sale, attrs)
+  end
+
+  @doc """
+  Returns the list of outside_sales.
+
+  ## Examples
+
+      iex> list_outside_sales()
+      [%OutsideSale{}, ...]
+
+  """
+  def list_outside_sales do
+    Repo.all(OutsideSale)
+  end
+
+  @doc """
+  Gets a single outside_sale.
+
+  Raises `Ecto.NoResultsError` if the Outside sale does not exist.
+
+  ## Examples
+
+      iex> get_outside_sale!(123)
+      %OutsideSale{}
+
+      iex> get_outside_sale!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_outside_sale!(id), do: Repo.get!(OutsideSale, id)
+
+
+  @doc """
+  Get the total of quantities of sales for an outside item, by ID.
+
+  ## Examples
+
+      iex> get_outside_quantity_sold(123)
+      5
+
+      iex> get_outside_quantity_sold(456)
+      0
+  """
+  def get_outside_quantity_sold(item_id) do
+    query =
+      from s in OutsideSale,
+        where: s.item_id == ^item_id,
+        select: sum(s.quantity)
+
+    Repo.one(query) || 0
+  end
+
+  @doc """
+  Creates a outside_sale.
+
+  ## Examples
+
+      iex> create_outside_sale(%{field: value})
+      {:ok, %OutsideSale{}}
+
+      iex> create_outside_sale(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_outside_sale(attrs \\ %{}) do
+    %OutsideSale{}
+    |> OutsideSale.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a outside_sale.
+
+  ## Examples
+
+      iex> update_outside_sale(outside_sale, %{field: new_value})
+      {:ok, %OutsideSale{}}
+
+      iex> update_outside_sale(outside_sale, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_outside_sale(%OutsideSale{} = outside_sale, attrs) do
+    outside_sale
+    |> OutsideSale.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a outside_sale.
+
+  ## Examples
+
+      iex> delete_outside_sale(outside_sale)
+      {:ok, %OutsideSale{}}
+
+      iex> delete_outside_sale(outside_sale)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_outside_sale(%OutsideSale{} = outside_sale) do
+    Repo.delete(outside_sale)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking outside_sale changes.
+
+  ## Examples
+
+      iex> change_outside_sale(outside_sale)
+      %Ecto.Changeset{data: %OutsideSale{}}
+
+  """
+  def change_outside_sale(%OutsideSale{} = outside_sale, attrs \\ %{}) do
+    OutsideSale.changeset(outside_sale, attrs)
   end
 end

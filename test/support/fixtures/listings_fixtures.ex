@@ -33,4 +33,18 @@ defmodule Yabe.ListingsFixtures do
 
     sale
   end
+
+  @doc """
+  Generate a outside_sale.
+  """
+  def outside_sale_fixture(attrs \\ %{}) do
+    {:ok, outside_sale} =
+      attrs
+      |> Enum.into(%{
+
+      })
+      |> Yabe.Listings.create_outside_sale()
+
+    outside_sale
+  end
 end

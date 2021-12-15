@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchResult: {
@@ -23,7 +23,7 @@ export const searchSlice = createSlice({
           image_url: p.image,
           description: p.shortDescription,
           price: price,
-          seller: {email: 'Best Buy'}
+          seller: { email: 'Best Buy' }
         }
       });
 
@@ -40,13 +40,16 @@ export const searchSlice = createSlice({
         description: p.shortDescription,
         price: price,
         quantity_sold: 0,
-        seller: {email: 'Best Buy'}
+        seller: { email: 'Best Buy' }
       }
+    },
+    setSearchItemQuantitySold: (state, action) => {
+      state.details.quantity_sold = action.payload;
     }
   }
 });
 
-export const { setSearchItems, setSearchItemDetails } = searchSlice.actions;
+export const { setSearchItems, setSearchItemDetails, setSearchItemQuantitySold } = searchSlice.actions;
 
 export const selectSearchItems = (state) => {
   return state.search.searchResult.items;
