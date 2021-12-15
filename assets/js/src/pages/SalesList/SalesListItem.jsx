@@ -1,17 +1,13 @@
 import React from "react";
-import {Link} from "react-router-dom";
-<<<<<<< HEAD
-import { dollarString, dollarAmount } from "../../utils";
-=======
-import {dollarString} from "../../utils";
->>>>>>> a33d78350a1efce13de63f9bb2e7c23decabd285
+import { Link } from "react-router-dom";
+import { dollarString } from "../../utils";
 
 const SalesListItem = sale => {
   return (
     <li key={sale.item.id} className='list-group-item'>
       <div className='row my-2'>
         <div className='col-8 col-sm-3 col-xl-2'>
-          <img src={sale.item.image_url} alt={sale.item.id} className='img-fluid img-thumbnail'/>
+          <img src={sale.item.image_url} alt={sale.item.id} className='img-fluid img-thumbnail' />
         </div>
         <div className='col-12 col-sm-9 col-xl-10'>
           <Link to={`/listings/${sale.item.id}`}>
