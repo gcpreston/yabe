@@ -4,7 +4,7 @@ import { dollarString } from "../../utils";
 
 const SalesListItem = ({ sale, outside }) => {
   return (
-    <li key={sale.item.id} className='list-group-sale.item'>
+    <li key={sale.item.id} className='list-group-item'>
       <div className='row my-2'>
         <div className='col-8 col-sm-3 col-xl-2'>
           <img src={sale.item.image_url} alt={sale.item.id} className='img-fluid img-thumbnail' />
