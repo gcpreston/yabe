@@ -19,10 +19,22 @@ const Purchases = (params) => {
 
   return (
     <div>
-      <h2>Purchases</h2>
-      <SalesList sales={purchases} />
-      <h2>Outside Purchases</h2>
-      <SalesList sales={outsidePurchases} outside />
+      {purchases.length > 0 ?
+        <>
+          <h2>Purchases</h2>
+          <SalesList sales={purchases} />
+        </>
+        :
+        null}
+
+      {outsidePurchases.length > 0 ?
+        <>
+          <h2>Outside Purchases</h2>
+          <SalesList sales={outsidePurchases} outside />
+        </>
+        :
+        null
+      }
     </div>
   )
 }
