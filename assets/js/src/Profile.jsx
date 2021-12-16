@@ -6,7 +6,6 @@ import SellerProfile from './pages/Seller/SellerProfile.jsx';
 
 export default function Profile(props) {
   const { type } = props;
-  console.log('profile got', props)
   const { userId } = useParams();
 
   if (type === 'buyer') {
