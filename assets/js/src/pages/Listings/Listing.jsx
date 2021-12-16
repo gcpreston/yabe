@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 import { selectItemIds, selectItem } from '../../features/listings/listingsSlice';
 import { fetchItem } from '../../features/listings/listingsService';
@@ -33,7 +33,7 @@ export default function Listing() {
         </div>
         <div className='col-8 border rounded p-4'>
           <h1>{item.name}</h1>
-          <h3>Seller: {item.seller.email}</h3>
+          <h3>Seller: <Link to={`/sellers/${item.seller.id}`}>{item.seller.email}</Link></h3>
           <p>{item.description}</p>
           <h3>Price: {dollarString(item.price)}</h3>
           <p>Quantity sold: {item.quantity_sold}</p>

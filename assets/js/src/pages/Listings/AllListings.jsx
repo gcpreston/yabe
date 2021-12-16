@@ -19,7 +19,7 @@ export default function AllListings() {
   return (
     <>
       {currentUser && currentUser.role === 'seller' ? <a href='/listings/new' className='btn btn-primary mb-2'>New Listing</a> : null}
-      <Listings items={items} link='listings' />
+      <Listings items={items} outside={false} link='listings' />
     </>
   )
 }
