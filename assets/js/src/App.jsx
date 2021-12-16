@@ -12,6 +12,7 @@ import AuthLoader from "./AuthLoader";
 import Search from "./pages/Search";
 import CurrentUserProfile from './pages/CurrentUserProfile';
 import Details from "./pages/Search/Details";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 export default function App() {
   return (
@@ -28,6 +29,8 @@ export default function App() {
             <Route path=':id' element={<Listing />} />
             <Route path='new' element={<NewListingForm />} />
           </Route>
+
+          <Route path='privacy' element={<PrivacyPolicy />} />
 
           <Route path='sellers/'>
             <Route path=':userId' element={<Profile type='seller' />} />
