@@ -135,6 +135,14 @@ defmodule Yabe.Listings do
     Repo.all(query)
   end
 
+  def list_outside_purchases_of_user(%User{} = user) do
+    query =
+      from o in OutsideSale,
+        where: o.buyer_id == ^user.id
+
+    Repo.all(query)
+  end
+
   @doc """
   Return the sales where the user is the seller.
   """
@@ -380,5 +388,111 @@ defmodule Yabe.Listings do
   """
   def change_outside_sale(%OutsideSale{} = outside_sale, attrs \\ %{}) do
     OutsideSale.changeset(outside_sale, attrs)
+  end
+
+  alias Yabe.Listings.OutsideItem
+
+  @doc """
+  Returns the list of outside_items.
+
+  ## Examples
+
+      iex> list_outside_items()
+      [%OutsideItem{}, ...]
+
+  """
+  def list_outside_items do
+    Repo.all(OutsideItem)
+  end
+
+  @doc """
+  Gets a single outside_item.
+
+  Raises `Ecto.NoResultsError` if the Outside item does not exist.
+
+  ## Examples
+
+      iex> get_outside_item!(123)
+      %OutsideItem{}
+
+      iex> get_outside_item!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_outside_item!(id), do: Repo.get!(OutsideItem, id)
+
+  @doc """
+  Creates a outside_item.
+
+  ## Examples
+
+      iex> create_outside_item(%{field: value})
+      {:ok, %OutsideItem{}}
+
+      iex> create_outside_item(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_outside_item(attrs \\ %{}) do
+    %OutsideItem{}
+    |> OutsideItem.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_outside_item_if_not_exists(attrs \\ %{}) do
+    if Repo.exists?(from o in OutsideItem, where: o.id == ^attrs["id"]) do
+      {:ok, get_outside_item!(attrs["id"])}
+    else
+      %OutsideItem{}
+      |> OutsideItem.changeset(attrs)
+      |> Repo.insert()
+    end
+  end
+
+  @doc """
+  Updates a outside_item.
+
+  ## Examples
+
+      iex> update_outside_item(outside_item, %{field: new_value})
+      {:ok, %OutsideItem{}}
+
+      iex> update_outside_item(outside_item, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_outside_item(%OutsideItem{} = outside_item, attrs) do
+    outside_item
+    |> OutsideItem.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a outside_item.
+
+  ## Examples
+
+      iex> delete_outside_item(outside_item)
+      {:ok, %OutsideItem{}}
+
+      iex> delete_outside_item(outside_item)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_outside_item(%OutsideItem{} = outside_item) do
+    Repo.delete(outside_item)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking outside_item changes.
+
+  ## Examples
+
+      iex> change_outside_item(outside_item)
+      %Ecto.Changeset{data: %OutsideItem{}}
+
+  """
+  def change_outside_item(%OutsideItem{} = outside_item, attrs \\ %{}) do
+    OutsideItem.changeset(outside_item, attrs)
   end
 end

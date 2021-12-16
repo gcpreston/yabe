@@ -22,6 +22,7 @@ defmodule YabeWeb.Router do
     pipe_through :api
 
     resources "/items", ItemController, except: [:new, :edit]
+    resources "/outside_items", OutsideItemController, except: [:new, :edit]
     resources "/sales", SaleController, except: [:new, :edit]
     resources "/outside_sales", OutsideSaleController, except: [:new, :edit]
     resources "/users", UserController, only: [:show]
@@ -29,6 +30,7 @@ defmodule YabeWeb.Router do
     get "/sales/sold_by/:seller_id", SaleController, :show_by_seller
     get "/sales/bought_by/:buyer_id", SaleController, :show_by_buyer
     get "/outside_sales/quantity_sold/:item_id", OutsideSaleController, :show_quantity_sold
+    get "/outside_sales/bought_by/:buyer_id", OutsideSaleController, :show_by_buyer
   end
 
   # Enables LiveDashboard only for development

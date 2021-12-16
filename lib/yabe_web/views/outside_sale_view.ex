@@ -17,8 +17,12 @@ defmodule YabeWeb.OutsideSaleView do
   end
 
   def render("outside_sale.json", %{outside_sale: outside_sale}) do
+    outside_sale = Yabe.Repo.preload(outside_sale, [:item, :buyer])
     %{
-      id: outside_sale.id
+      id: outside_sale.id,
+      quantity: outside_sale.quantity,
+      item: render_one(outside_sale.item, YabeWeb.OutsideItemView, "outside_item.json"),
+      buyer: render_one(outside_sale.buyer, YabeWeb.UserView, "user.json")
     }
   end
 end

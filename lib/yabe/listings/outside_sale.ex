@@ -4,7 +4,7 @@ defmodule Yabe.Listings.OutsideSale do
 
   schema "outside_sales" do
     field :quantity, :integer
-    field :item_id, :integer
+    belongs_to :item, Yabe.Listings.OutsideItem
     belongs_to :buyer, Yabe.Accounts.User
 
     timestamps()
@@ -14,6 +14,7 @@ defmodule Yabe.Listings.OutsideSale do
   def changeset(outside_sale, attrs) do
     outside_sale
     |> cast(attrs, [:quantity, :item_id, :buyer_id])
+    |> cast_assoc(:item)
     |> cast_assoc(:buyer)
     |> validate_required([:quantity, :item_id, :buyer_id])
   end

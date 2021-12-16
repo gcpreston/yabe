@@ -166,4 +166,66 @@ defmodule Yabe.ListingsTest do
       assert %Ecto.Changeset{} = Listings.change_outside_sale(outside_sale)
     end
   end
+
+  describe "outside_items" do
+    alias Yabe.Listings.OutsideItem
+
+    import Yabe.ListingsFixtures
+
+    @invalid_attrs %{description: nil, image_url: nil, name: nil, price: nil, seller: nil}
+
+    test "list_outside_items/0 returns all outside_items" do
+      outside_item = outside_item_fixture()
+      assert Listings.list_outside_items() == [outside_item]
+    end
+
+    test "get_outside_item!/1 returns the outside_item with given id" do
+      outside_item = outside_item_fixture()
+      assert Listings.get_outside_item!(outside_item.id) == outside_item
+    end
+
+    test "create_outside_item/1 with valid data creates a outside_item" do
+      valid_attrs = %{description: "some description", image_url: "some image_url", name: "some name", price: 42, seller: "some seller"}
+
+      assert {:ok, %OutsideItem{} = outside_item} = Listings.create_outside_item(valid_attrs)
+      assert outside_item.description == "some description"
+      assert outside_item.image_url == "some image_url"
+      assert outside_item.name == "some name"
+      assert outside_item.price == 42
+      assert outside_item.seller == "some seller"
+    end
+
+    test "create_outside_item/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Listings.create_outside_item(@invalid_attrs)
+    end
+
+    test "update_outside_item/2 with valid data updates the outside_item" do
+      outside_item = outside_item_fixture()
+      update_attrs = %{description: "some updated description", image_url: "some updated image_url", name: "some updated name", price: 43, seller: "some updated seller"}
+
+      assert {:ok, %OutsideItem{} = outside_item} = Listings.update_outside_item(outside_item, update_attrs)
+      assert outside_item.description == "some updated description"
+      assert outside_item.image_url == "some updated image_url"
+      assert outside_item.name == "some updated name"
+      assert outside_item.price == 43
+      assert outside_item.seller == "some updated seller"
+    end
+
+    test "update_outside_item/2 with invalid data returns error changeset" do
+      outside_item = outside_item_fixture()
+      assert {:error, %Ecto.Changeset{}} = Listings.update_outside_item(outside_item, @invalid_attrs)
+      assert outside_item == Listings.get_outside_item!(outside_item.id)
+    end
+
+    test "delete_outside_item/1 deletes the outside_item" do
+      outside_item = outside_item_fixture()
+      assert {:ok, %OutsideItem{}} = Listings.delete_outside_item(outside_item)
+      assert_raise Ecto.NoResultsError, fn -> Listings.get_outside_item!(outside_item.id) end
+    end
+
+    test "change_outside_item/1 returns a outside_item changeset" do
+      outside_item = outside_item_fixture()
+      assert %Ecto.Changeset{} = Listings.change_outside_item(outside_item)
+    end
+  end
 end

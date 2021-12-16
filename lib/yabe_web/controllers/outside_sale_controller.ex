@@ -1,6 +1,7 @@
 defmodule YabeWeb.OutsideSaleController do
   use YabeWeb, :controller
 
+  alias Yabe.Accounts
   alias Yabe.Listings
   alias Yabe.Listings.OutsideSale
 
@@ -27,6 +28,12 @@ defmodule YabeWeb.OutsideSaleController do
 
   def show_quantity_sold(conn, %{"item_id" => item_id}) do
     render(conn, "quantity_sold.json", item_id: item_id)
+  end
+
+  def show_by_buyer(conn, %{"buyer_id" => buyer_id}) do
+    user = Accounts.get_user!(buyer_id)
+    outside_sales = Listings.list_outside_purchases_of_user(user)
+    render(conn, "index.json", outside_sales: outside_sales)
   end
 
   def update(conn, %{"id" => id, "outside_sale" => outside_sale_params}) do
