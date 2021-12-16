@@ -15,6 +15,13 @@
   <%= password_input f, :password, required: true, class: "form-control" %>
   <%= error_tag f, :password %>
 
+  <%= label f, :role, class: "form-label" %>
+  <br />
+  <%= label f, :role_buyer, "Buyer", class: "form-label" %>
+  <%= radio_button f, :role, "buyer" %>
+  <%= label f, :role_seller, "Seller", class: "form-label" %>
+  <%= radio_button f, :role, "seller" %>
+
   <div>
     <%= submit "Register", class: "btn btn-primary" %>
   </div>
