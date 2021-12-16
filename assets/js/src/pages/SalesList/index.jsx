@@ -1,11 +1,11 @@
 import React from 'react';
 import SalesListItem from "./SalesListItem";
 
-const SalesList = (params) => {
+const SalesList = ({ sales, outside }) => {
   return (
     <ul className='list-group'>
-      {params.sales.map(item => (
-        <SalesListItem key={item.id} {...item} />
+      {sales.map(sale => (
+        <SalesListItem key={sale.id} sale={sale} outside={outside} />
       ))}
     </ul>
   )

@@ -22,7 +22,7 @@ const Purchases = (params) => {
       <h2>Purchases</h2>
       <SalesList sales={purchases} />
       <h2>Outside Purchases</h2>
-      <SalesList sales={outsidePurchases} />
+      <SalesList sales={outsidePurchases} outside />
     </div>
   )
 }

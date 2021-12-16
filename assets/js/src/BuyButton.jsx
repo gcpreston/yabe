@@ -26,9 +26,13 @@ export default function BuyButton(props) {
     openSnackbar('Buy success!');
   };
 
-  if (isAuthenticated && user.role === 'buyer') {
+  if (!isAuthenticated) {
+    return <p>Log in to buy</p>;
+  }
+
+  if (user.role === 'buyer') {
     return <button className='btn btn-primary' onClick={buyListing}>Buy</button>;
   }
 
-  return <p>Log in to buy</p>;
+  return null;
 }
