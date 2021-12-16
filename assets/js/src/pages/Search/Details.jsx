@@ -35,7 +35,7 @@ export default function Details() {
           <p>{item.description}</p>
           <h3>Price: {dollarString(item.price)}</h3>
           <p>Quantity sold: {item.quantity_sold}</p>
-          <OutsideBuyButton itemId={id} />
+          <OutsideBuyButton item={item} />
         </div>
       </div>
     );

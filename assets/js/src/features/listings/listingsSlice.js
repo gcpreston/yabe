@@ -11,7 +11,8 @@ const initialState = {
   sales: {
     byid: {},
     allIds: []
-  }
+  },
+  outsideSales: []
 };
 
 export const listingsSlice = createSlice({
@@ -37,11 +38,14 @@ export const listingsSlice = createSlice({
       state.sales = {};
       state.sales.byId = normalizedSales.entities.sales;
       state.sales.allIds = normalizedSales.result;
+    },
+    setOutsideSales: (state, action) => {
+      state.outsideSales = action.payload;
     }
   }
 });
 
-export const { setAllItems, setItem, setSales } = listingsSlice.actions;
+export const { setAllItems, setItem, setSales, setOutsideSales } = listingsSlice.actions;
 
 export const selectAllItems = (state) => {
   return denormalize(state.listings.items.allIds, [item], { items: state.listings.items.byId });
@@ -51,5 +55,6 @@ export const selectItem = (state, id) => state.listings.items.byId[id];
 export const selectSales = (state) => {
   return denormalize(state.listings.sales.allIds, [sale], { sales: state.listings.sales.byId })
 }
+export const selectOutsideSales = (state) => state.listings.outsideSales;
 
 export default listingsSlice.reducer;
