@@ -5,6 +5,7 @@ import Header from './Header';
 import Home from './pages/Home';
 import AllListings from './pages/Listings/AllListings';
 import Listing from './pages/Listings/Listing'
+import NewListingForm from './pages/Listings/NewListingForm';
 import NoMatch from './pages/NoMatch';
 import Profile from './Profile';
 import AuthLoader from "./AuthLoader";
@@ -22,9 +23,10 @@ export default function App() {
         <Route path='/'>
           <Route index element={<Home />} />
 
-          <Route path='listings'>
+          <Route path='listings/'>
             <Route index element={<AllListings />} />
             <Route path=':id' element={<Listing />} />
+            <Route path='new' element={<NewListingForm />} />
           </Route>
 
           <Route path='sellers/'>

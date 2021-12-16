@@ -40,3 +40,14 @@ export const createSale = (disaptch, newSale) =>
   })
     .then(response => response.json())
     .then(parsedResp => disaptch(setItem(parsedResp.data.item)));
+
+export const createitem = (dispatch, newItem) =>
+  fetch(ITEMS_API, {
+    method: 'POST',
+    body: JSON.stringify(newItem),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .then(parsedResp => dispatch(setItem(parsedResp.data)));
